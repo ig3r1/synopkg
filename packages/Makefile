@@ -1,8 +1,6 @@
 PACK_LIST:=$(strip $(wildcard *-spk))
 ARCH_LIST:=$(strip $(notdir $(wildcard $(TCH_DIR)/*-*)))
 
-$(info $(PACK_LIST))
-
 all: build-all pack-all
 	@echo 'Done for $(PACKAGE)-$(VERSION) (all)'
 
@@ -26,5 +24,4 @@ clean-%-spk: $*
 	@cd $*-spk && make $(addprefix clean-,$(ARCH_LIST)) $(DEBUG)
 	@echo 'clean done for $* only'
 
-include $(wildcard *-spkdeps)
-
+include $(wildcard *.deps)
