@@ -1,10 +1,10 @@
-PACK_LIST:=$(strip $(wildcard *-spk))
+PACK_LIST:=$(strip $(wildcard *))
 ARCH_LIST:=$(strip $(notdir $(wildcard $(TCH_DIR)/*-*)))
 
 all: build-all pack-all
 	@echo 'Done for $(PACKAGE)-$(VERSION) (all)'
 
-%-all: $(addprefix %-,$(PACK_LIST))
+%-all: $(addprefix %-, $(wildcard *))
 	@echo '$* done for all'
 
 build-%-spk: $(addsuffix -deps,$(addprefix %-,$(ARCH_LIST)))
