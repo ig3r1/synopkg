@@ -1,12 +1,5 @@
 
-include ../../mktools/common-inf.mk
-
-SRC_NAME:=${PACKAGE}-everywhere-opensource-src-${VERSION}
-SRC_FILE:=${SRC_NAME}.tar.gz 
-SRC_REPO:=http://download.qt.nokia.com/qt/source/${SRC_FILE}
-
-include ../../mktools/common-tch.mk
-include ../../mktools/common-spk.mk
+include ../../common/packages.mk
 
 configure-arm-none-linux-gnueabi: TARGET=-embedded arm -xplatform qws/linux-arm-gnueabi-g++ -little-endian
 configure-%: patch-qmutex_unix.cpp 
