@@ -16,7 +16,7 @@ arch=$arch
 #report_url=
 #package_icon=
 #install_reboot=
-install_dep_packages="qt"
+install_dep_packages="qt=4.8.1"
 #instuninst_restart_services=
 #startstop_restart_services=
 #install_dep_services=

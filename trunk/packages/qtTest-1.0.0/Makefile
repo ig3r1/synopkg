@@ -1,5 +1,5 @@
 
-include ../../tools/packages.mk
+include ../../common/packages.mk
 
 configure-arm-none-linux-gnueabi: TARGET=qws/linux-arm-gnueabi-g++
 configure-%: 
