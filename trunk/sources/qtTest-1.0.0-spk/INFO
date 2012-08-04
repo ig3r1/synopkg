@@ -1,0 +1,25 @@
+package="qtTest"
+version="1.0.0"
+description="Allow Qt Installation test"
+maintainer="synotours@myhomenas.net"
+arch=$arch
+#model=
+#checksum=
+#adminport=
+#adminurl=
+#adminprotocol=
+#Firmware=
+#dsmuidir=
+#checkport=
+#startable=
+#helpurl=
+#report_url=
+#package_icon=
+#install_reboot=
+install_dep_packages="qt"
+#instuninst_restart_services=
+#startstop_restart_services=
+#install_dep_services=
+#start_dep_services=
+#dsmappname=
+

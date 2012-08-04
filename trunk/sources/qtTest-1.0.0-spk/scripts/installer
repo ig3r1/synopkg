@@ -1,0 +1,36 @@
+#!/bin/sh
+
+export QTDIR=/volume1/@appstore/Qt
+export PATH=$QTDIR/bin:$PATH
+export LD_LIBRARY_PATH=$QTDIR/lib${LD_LIBRARY_PATH:+:}$LD_LIBRARY_PATH
+
+preinst ()
+{
+    exit 0
+}
+
+postinst ()
+{
+    exit 0
+}
+
+preuninst ()
+{
+    exit 0
+}
+
+postuninst ()
+{
+    exit 0
+}
+
+preupgrade ()
+{
+    exit 0
+}
+
+postupgrade ()
+{
+    exit 0
+}
+
