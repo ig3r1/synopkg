@@ -23,3 +23,6 @@ startable="no"
 #start_dep_services=
 #dsmappname=
 displayname="Qt"
+src_name="qt-everywhere-opensource-src-4.8.1"
+src_type="tar.gz"
+src_site="http://releases.qt-project.org/qt4/source"

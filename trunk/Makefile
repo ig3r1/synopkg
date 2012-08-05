@@ -5,7 +5,8 @@ export TCH_DIR:=$(realpath ./toolchains/)
 all: build-all pack-all trsf-all
 	@echo "Done for all"
 	
-down-%:
+down-tch: 
+	@cd $(TCH_DIR) && make all
 
 build-%: $(addsuffix .deps,$(wildcard $(SPK_DIR)/*-*))
 	@echo "Make $(SPK_DIR)/$*"

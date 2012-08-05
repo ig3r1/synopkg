@@ -21,7 +21,7 @@ pack-%:
 	@rm -f $*.spk
 	@cd $* && make $(addsuffix .spk, $(addprefix $*-,$(ARCH_LIST))) $(DEBUG)
 	@echo 'pack done for $*'
-	@test -f $*/*-*.spk || return 0 && mv $*/$*-*.spk ./ 
+	@cd $* && mv $(addsuffix .spk, $(addprefix $*-,$(ARCH_LIST))) .. 
 
 clean-%-spk: $*
 	@cd $*-spk && make $(addprefix clean-,$(ARCH_LIST)) $(DEBUG)
