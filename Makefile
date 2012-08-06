@@ -25,6 +25,6 @@ $(SPK_DIR)/%.deps: $(SPK_DIR)/%/INFO
 	@echo "Make $* dependencies file..."
 	@echo '$$(info Loading $* dependencies)' > $@
 	@echo "$*-%-deps: $(shell grep install_dep_packages $(SPK_DIR)/$*/INFO |cut -d= -f2- | sed  -e 's/:/-%-deps /g' -e 's/=/-/g' -e 's/\(.\)$$/\1-%-deps/')" >> $@
-	@echo '\t@cd $* && make $$(DEBUG) arch-$$*' >> $@
+	@echo "\t@cd $*" '&& make $$(DEBUG) arch-$$*' >> $@
 	@cat $@
 
