@@ -28,3 +28,4 @@ $(SPK_DIR)/%.deps: $(SPK_DIR)/%/INFO
 	@echo "\t@cd $*" '&& make $$(DEBUG) arch-$$*' >> $@
 	@cat $@
 
+
