@@ -22,4 +22,6 @@ install_dep_packages="qt=4.8.1"
 #install_dep_services=
 #start_dep_services=
 #dsmappname=
-
+src_name="qtTest-1.0.0"
+src_type=""
+src_site=""

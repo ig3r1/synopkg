@@ -16,7 +16,7 @@ pack-%:
 	@echo "Pack $(SPK_DIR)/$*"
 	@test "$*" = "all" && rm -f *.spk || rm -f $*-*.spk
 	@cd $(SPK_DIR) && make $@
-	@test -d $(SPK_DIR)/*.spk || return 0 && mv $(SPK_DIR)/*.spk ./
+	@mv $(SPK_DIR)/*.spk ./
 
 trsf-%:
 	@echo "Transfert $(SPK_DIR)/$*"

@@ -15,39 +15,35 @@ SPK_FILES:=scripts WIZARD_UIFILES LICENCE PACKAGE_ICON.PNG
 SPK_FLAGS:=--owner=root --group=root --numeric-owner --exclude-vcs
 
 PREFIX=$(CURDIR)/arch-$*
+SOURCE=$(SRC_DIR)/$(PACKAGE)-$(VERSION)
 
+$(info Making $(SOURCE) to $(CURDIR)...)
 
-$(info Making $(SRC_DIR)/$(SRC_NAME)...)
-
-$(PACKAGE)-$(VERSION)-%.spk: %/package.tgz %/INFO
+$(PACKAGE)-$(VERSION)-%.spk: arch-%/package.tgz arch-%/INFO
 	@echo 'Making $@...'
 	@rm -f $@
 	@for file in $^ $(SPK_FILES); do if test -s $$file; then tar $(SPK_FLAGS) -rhf $@ -C $$(dirname $$file) $$(basename $$file) && echo "$$file added"; fi; done
 
-%/package.tgz: arch-%
+arch-%/package.tgz: arch-%
 	@echo 'Making $@...'
 	@tar $(SPK_FLAGS) -zcvf $@ -C $< $$(ls $<)
 
-arm-none-linux-gnueabi/INFO: ARCH=88f6281 88f6258
-%/INFO:
+arch-arm-none-linux-gnueabi/INFO: ARCH=88f6281 88f6258
+arch-%/INFO:
 	@echo 'Making $@...'
 	@sed -e 's/$$arch/\"$(ARCH)\"/' \
 		 -e 's/$$model/\"$(MODEL)\"/' \
 		 -e 's/^#.*$$//' INFO | tr -s "\n" > $@
 
-arch-%: $(call VALIDDIR,$(SRC_DIR)/$(PACKAGE)-$(VERSION)) configure-% build-% install-%
-	@test -d arch-$* && echo 'Done for $(PACKAGE)-$(VERSION) ($*)'
-
-
-build-%: $(call VALIDDIR,$(SRC_DIR)/$(PACKAGE)-$(VERSION))
-	@cd $(SRC_DIR)/$(PACKAGE)-$(VERSION) &&\
-	 PATH=$(TCH_DIR)/$*/bin:$(PATH) &&\
-	 make all
-
-install-%: $(call VALIDDIR,$(SRC_DIR)/$(PACKAGE)-$(VERSION))
-	@cd $(SRC_DIR)/$(PACKAGE)-$(VERSION) &&\
+arch-%: build-%
+	@cd $(SOURCE) &&\
 	 PATH=$(TCH_DIR)/$*/bin:$(PATH) &&\
 	 make install
+
+build-%: configure-%
+	@cd $(SOURCE) &&\
+	 PATH=$(TCH_DIR)/$*/bin:$(PATH) &&\
+	 make all
 	
 patch-%: 
 	@test -f $(CURDIR)/patch/$@ &&\
@@ -59,7 +55,7 @@ clean-%:
 	@rm -r $*
 
 
-ifneq ($(SRC_NAME),)
+ifneq ($(SRC_SITE),)
 
 $(SRC_DIR)/$(PACKAGE)-$(VERSION): $(SRC_DIR)/$(SRC_NAME)
 	cd $(SRC_DIR) && ln -s $(SRC_NAME) $(PACKAGE)-$(VERSION)
