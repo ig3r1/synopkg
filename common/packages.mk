@@ -14,6 +14,10 @@ SRC_NAME=$(call INFODATA,src_name)
 SPK_FILES:=scripts WIZARD_UIFILES LICENCE PACKAGE_ICON.PNG
 SPK_FLAGS:=--owner=root --group=root --numeric-owner --exclude-vcs
 
+ifeq ($(SRC_DIR),)
+SRC_DIR:=..
+endif
+
 PREFIX=$(CURDIR)/arch-$*
 SOURCE=$(SRC_DIR)/$(PACKAGE)-$(VERSION)
 
@@ -52,7 +56,7 @@ patch-%:
 	 echo '$* Patched!'
 
 clean-%:
-	@rm -r $*
+	@rm -rf arch-$* *$**.spk
 
 
 ifneq ($(SRC_SITE),)
