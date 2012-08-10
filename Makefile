@@ -10,7 +10,7 @@ all: down-all build-all pack-all trsf-all
 	@echo "Done for all"
 	
 down-%: 
-	@cd $(TCH_DIR) && make $@ $(DEBUG) ARCH=$(ARCH)
+	@cd $(TCH_DIR) && make all $(DEBUG) ARCH=$(ARCH)
 
 build-%: $(addsuffix .deps,$(wildcard $(SPK_DIR)/*-*))
 	@cd $(SPK_DIR) && make $@ ARCH=$(ARCH)

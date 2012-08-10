@@ -13,7 +13,7 @@ endif
 TCH_LIST:=$(foreach a,$(ARCH), $(call TCH_INFO,$(filter-out $(wildcard $(a)), $(a)),3))
 
 all: $(TCH_LIST) $(addprefix expand-,$(TCH_LIST))
-	@echo "All toolchains available! $(ARCH) $^"
+	@echo "All toolchains available!"
 
 expand-%.tar.gz: CMD=tar -zxvf
 expand-%.tgz: CMD=tar -zxvf
