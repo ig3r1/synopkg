@@ -6,17 +6,17 @@ export SRC_LST:=$(notdir $(wildcard $(SRC_DIR)/*-*))
 export SPK_LST:=$(notdir $(wildcard $(SPK_DIR)/*-*))
 export TCH_LST:=$(notdir $(wildcard $(TCH_DIR)/*-*))
 
-all: build-all pack-all trsf-all
+all: down-all build-all pack-all trsf-all
 	@echo "Done for all"
 	
-tchn-%: 
-	@cd $(TCH_DIR) && make $@ $(DEBUG)
+down-%: 
+	@cd $(TCH_DIR) && make $@ $(DEBUG) ARCH=$(ARCH)
 
 build-%: $(addsuffix .deps,$(wildcard $(SPK_DIR)/*-*))
-	@cd $(SPK_DIR) && make $@
+	@cd $(SPK_DIR) && make $@ ARCH=$(ARCH)
 
 pack-%:
-	@cd $(SPK_DIR) && make $@
+	@cd $(SPK_DIR) && make $@ ARCH=$(ARCH)
 
 trsf-%:
 	@echo "Transfert $(SPK_DIR)/$*"
