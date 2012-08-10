@@ -7,32 +7,32 @@ TCH_CONF:=Toolchains.csv
 TCH_SITE:=http://downloads.sourceforge.net/project/dsgpl
 
 ifeq ($(ARCH),)
-ARCH=$(shell cat $(TCH_CONF) | tr -s "\t" | cut -f1)
+ARCH=$(shell cat $(TCH_CONF) | cut -d"," -f1| tr -s "\t")
 endif
 
-expand: down-all expand-tgz expand-tar.gz expand-tar expand-zip
+TCH_LIST:=$(foreach a,$(ARCH), $(call TCH_INFO,$(filter-out $(wildcard $(a)), $(a)),3))
 
-expand-tar.gz: CMD=tar -zxvf
-expand-tgz: CMD=tar -zxvf
-expand-tar: CMD=tar -xvf
-expand-zip: CMD=gunzip
+all: $(TCH_LIST) $(addprefix expand-,$(TCH_LIST))
+	@echo "All toolchains available! $(ARCH) $^"
+
+expand-%.tar.gz: CMD=tar -zxvf
+expand-%.tgz: CMD=tar -zxvf
+expand-%.tar: CMD=tar -xvf
+expand-%.zip: CMD=gunzip
 expand-%:
-	@test -n "$(wildcard *.$*)" && (for file in $(wildcard *.$*); do $(CMD) $$file; done) || return 0
-
-down-all: $(call TCH_INFO,$(ARCH),3)
-	@echo "All toolchains downloaded!"
+	@$(CMD) $*
 
 %.tar: down-%.tar
-	@echo $@ downloaded!
+	@echo "$@ downloaded!"
 
 %.tgz: down-%.tgz
-	@echo $@ downloaded!
+	@echo "$@ downloaded!"
 
 %.tar.gz:down-%.tar.gz
-	@echo $@ downloaded!
+	@echo "$@ downloaded!"
 
 %.zip:down-%.zip
-	@echo $@ downloaded!
+	@echo "$@ downloaded!"
 
 down-%:
 	@wget -O "$*" "$(TCH_SITE)/$(call TCH_FIND,$*,2)/$*"
