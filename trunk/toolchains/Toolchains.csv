@@ -1,7 +1,7 @@
 arm-none-linux-gnueabi,	DSM 4.0 Tool Chains/Marvell 88F628x Linux 2.6.32,			gcc421_glibc25_88f6281-GPL.tgz
-1,						DSM 4.0 Tool Chains/PowerPC 824x Linux 2.4.22,				gcc334_glibc233_ppc-GPL.tgz
-1,						DSM 4.0 Tool Chains/PowerPC 824x Linux 2.6.24,				gcc334_glibc233_ppc824x-GPL.tgz
-1,						DSM 4.0 Tool Chains/PowerPC 853x Linux 2.6.32,				gcc343_glibc234_ppc853x-GPL.tgz
+powerpc-linux-gnuspe,	DSM 4.0 Tool Chains/PowerPC 824x Linux 2.4.22,				gcc334_glibc233_ppc-GPL.tgz
+powerpc-linux-gnuspe,	DSM 4.0 Tool Chains/PowerPC 824x Linux 2.6.24,				gcc334_glibc233_ppc824x-GPL.tgz
+powerpc-linux-gnuspe,	DSM 4.0 Tool Chains/PowerPC 853x Linux 2.6.32,				gcc343_glibc234_ppc853x-GPL.tgz
 powerpc-linux-gnuspe,	DSM 4.0 Tool Chains/PowerPC 854x Linux 2.6.32,				gcc343_glibc234_ppc854x-GPL.tgz
 1,						DSM 4.0 Tool Chains/Intel x86 Linux 2.6.32 (Bromolow),		gcc421_glibc236_x86_bromolow-GPL.tgz
 1,						DSM 4.0 Tool Chains/Intel x86 Linux 2.6.32 (Bromolow),		gcc420_glibc236_x64_bromolow-GPL.tgz
